@@ -39,3 +39,29 @@ validate fail
 echo "URL: https://$MYBUCKET.s3.amazonaws.com/dragonsapp/index.html"
 URL: https://mybucketnancy.s3.amazonaws.com/dragonsapp/index.html
 
+https://sodfzfj9qa.execute-api.us-east-1.amazonaws.com/prod/
+
+https://bmcsg7le9i.execute-api.us-east-1.amazonaws.com/prod/customers
+
+
+/prod/dragons?address="sky tower"
+https://bmcsg7le9i.execute-api.us-east-1.amazonaws.com/prod/customers?address=sky tower
+
+/prod/dragons?first_name=Nancy
+https://bmcsg7le9i.execute-api.us-east-1.amazonaws.com/prod/customers?first_name=Nancy
+
+test ok:
+{
+  "first_name":"Elsa",
+  "last_name":"Eislex",
+  "customer_id":"3",
+  "address":"sky tower"
+}
+
+test_fail:
+{
+  "first_name":"Elsa",
+  "last_name":"Eislex",
+  "customer_id":3,
+  "address":"sky tower"
+}
