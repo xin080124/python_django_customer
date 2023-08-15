@@ -68,15 +68,15 @@ Sub MacroTest()
 
         For i = title_row To SourceDataLstr
             MatterFieldValue = .Cells(i, "E").Value
-            .Cells(i, "W").Value = .Cells(i, "C")
-            
+            .Cells(i, "W").Value = .Cells(i, "C")   ' Copy staff names
+            .Cells(i, "AA").Value = .Cells(i, "F")   ' Copy matter desc detail
             If i > title_row Then
             For ti = LBound(searchTexts) To UBound(searchTexts)
                 If InStr(MatterFieldValue, searchTexts(ti)) > 0 Then
-                    .Cells(i, "Z").Value = .Cells(i, "G")
+                    .Cells(i, "Z").Value = .Cells(i, "G")   ' Set operate hours
                     Exit For
                 Else
-                    .Cells(i, "X").Value = .Cells(i, "G")
+                    .Cells(i, "Y").Value = .Cells(i, "G")   ' Set non operate hours
                 End If
             Next ti
 
@@ -102,20 +102,20 @@ Sub MacroTest()
                 result = AreArraysEqualUnordered1(name_parts, tar_name_parts)
                 ' If InStr(StaffFieldValue, core_op_team(mi)) > 0 Then
                 If result = True Then
-                    .Cells(i, "Y").Value = "Y"
+                    .Cells(i, "X").Value = "Y"    ' from core team
                     Exit For
                 Else
-                    .Cells(i, "Y").Value = "N"
+                    .Cells(i, "X").Value = "N"    ' not from core team
                 End If
             Next mi
 
             Else
                 .Cells(i, "W").Value = "Staff Name"
-                .Cells(i, "X").Value = "Non Operate Hours"
-                .Cells(i, "Y").Value = "Core Team"
+                ' .Cells(i, "X").Value = "Non Operate Hours"
+                .Cells(i, "X").Value = "Core Team"
+                .Cells(i, "Y").Value = "Non Operate Hours"
                 .Cells(i, "Z").Value = "Operate Hours"
-                .Cells(i, "X").Value = "Non Operate Hours"
-                .Cells(i, "Y").Value = "Core Team"
+                .Cells(i, "AA").Value = "Matter Desc"
             End If
 
 
