@@ -63,7 +63,7 @@ Sub MacroTest()
     searchTexts = Split("AMS,Operate", ",")
     
      ' Dim core_op_team As String
-    core_op_team = Split("NC", ",")
+    core_op_team = Split("Nick McEwen,Thomas Gross,Shyam Kumar,David Ang,Kobe Xu,Siva Anbalagan,Ryan Cruz- PDC,Ma. Jesusa Cruz- PDC", ",")
     With SourceData
 
         For i = title_row To SourceDataLstr
@@ -72,18 +72,21 @@ Sub MacroTest()
             .Cells(i, "AA").Value = .Cells(i, "F")   ' Copy matter desc detail
             If i > title_row Then
             For ti = LBound(searchTexts) To UBound(searchTexts)
+                bFind = False
                 If InStr(MatterFieldValue, searchTexts(ti)) > 0 Then
                     .Cells(i, "Z").Value = .Cells(i, "G")   ' Set operate hours
+                    bFind = True
                     Exit For
-                Else
-                    .Cells(i, "Y").Value = .Cells(i, "G")   ' Set non operate hours
                 End If
             Next ti
-
+            
+            If bFind = False Then
+                 .Cells(i, "Y").Value = .Cells(i, "G")   ' Set non operate hours
+            End If
+            
             Dim StaffFieldValue As String
             StaffFieldValue = .Cells(i, "C").Value
-            ' StaffFieldValue = "McEwen, Nick"
-            
+          
             StaffFieldValue = Replace(StaffFieldValue, ", ", ",")
             StaffFieldValue = Replace(StaffFieldValue, ",", " ")
 
@@ -118,7 +121,6 @@ Sub MacroTest()
                 .Cells(i, "AA").Value = "Matter Desc"
             End If
 
-
         Next i
 
     End With
@@ -146,3 +148,4 @@ Sub MacroTest()
     '     .AddDataField .PivotFields("Chargable"), "Total Sales", xlSum
     ' End With
 End Sub
+
