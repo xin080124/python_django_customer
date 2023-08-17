@@ -60,20 +60,25 @@ Sub MacroTest()
     SourceDataLstr = SourceData.Range("A" & Rows.Count).End(xlUp).Row 'Find the lastrow in the Source Data Sheet
     ' MappingLstr = Mapping.Range("A" & Rows.Count).End(xlUp).Row 'Find the lastrow in the Mapping Sheet
 
-    searchTexts = Split("AMS,Operate", ",")
-    
-     ' Dim core_op_team As String
+    ' searchTexts = Split("AMS,Operate", ",")
+    searchTexts = ExtractColumnValuesToArray("managed_services", 3)
+
+    ' Dim core_op_team As String
     core_op_team = Split("Nick McEwen,Thomas Gross,Shyam Kumar,David Ang,Kobe Xu,Siva Anbalagan,Ryan Cruz- PDC,Ma. Jesusa Cruz- PDC", ",")
     With SourceData
 
         For i = title_row To SourceDataLstr
             MatterFieldValue = .Cells(i, "E").Value
+            ClientFieldValue = .Cells(i, "D").Value
+            Debug.Print "MatterFieldValue: " & MatterFieldValue
+            Debug.Print "ClientFieldValue: " & ClientFieldValue
             .Cells(i, "W").Value = .Cells(i, "C")   ' Copy staff names
             .Cells(i, "AA").Value = .Cells(i, "F")   ' Copy matter desc detail
             If i > title_row Then
             For ti = LBound(searchTexts) To UBound(searchTexts)
+                Debug.Print "searchTexts: " & searchTexts(ti)
                 bFind = False
-                If InStr(MatterFieldValue, searchTexts(ti)) > 0 Then
+                If InStr(searchTexts(ti), MatterFieldValue) > 0 And InStr(searchTexts(ti), ClientFieldValue) > 0 Then
                     .Cells(i, "Z").Value = .Cells(i, "G")   ' Set operate hours
                     bFind = True
                     Exit For
@@ -148,4 +153,3 @@ Sub MacroTest()
     '     .AddDataField .PivotFields("Chargable"), "Total Sales", xlSum
     ' End With
 End Sub
-

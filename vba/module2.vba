@@ -60,3 +60,23 @@ Function AreArraysEqualUnordered(arr1() As String, arr2() As String) As Boolean
     AreArraysEqualUnordered = True
 End Function
 
+Function ExtractColumnValuesToArray(ByVal sheetName As String, ByVal targetCol As Long) As Variant
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets(sheetName)
+    
+    Dim lastRow As Long
+    Dim colValues() As Variant
+    Dim rowNum As Long
+    Dim targetRange As Range
+    
+    lastRow = ws.Cells(ws.Rows.Count, targetCol).End(xlUp).Row
+    Set targetRange = ws.Range(ws.Cells(2, targetCol), ws.Cells(lastRow, targetCol))
+    ReDim colValues(1 To targetRange.Rows.Count)
+    
+    For rowNum = 1 To targetRange.Rows.Count
+        colValues(rowNum) = targetRange.Cells(rowNum, 1).Value
+    Next rowNum
+    
+    ExtractColumnValuesToArray = colValues
+End Function
+
