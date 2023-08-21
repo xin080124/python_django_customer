@@ -94,7 +94,7 @@ Sub MacroTest()
             Debug.Print "MatterFieldValue: " & MatterFieldValue
             Debug.Print "ClientFieldValue: " & ClientFieldValue
             .Cells(i, GetValue(myDictionary, "Staff Name Copy")).Value = .Cells(i, GetValue(myDictionary, "Staff Name"))   ' Copy staff names
-            .Cells(i, GetValue(myDictionary, "Client & Matter Desc")).Value = .Cells(i, GetValue(myDictionary, "Client Sort Name")) & .Cells(i, GetValue(myDictionary, "Matter Desc"))
+            .Cells(i, GetValue(myDictionary, "Client & Matter Desc")).Value = .Cells(i, GetValue(myDictionary, "Client Sort Name")) & " " & .Cells(i, GetValue(myDictionary, "Matter Desc"))
    ' Copy matter desc detail
             If i > title_row Then
             For ti = LBound(OPClients) To UBound(OPClients)
@@ -160,7 +160,7 @@ Sub MacroTest()
     End With
     MsgBox wsName & " table is created!"
     ' ' add buffer
-    ' Set startCell = ws.Range("A3")
+    ' Set startCell = ws.Range("W3")
     ' Set endCell = startCell.End(xlDown)
     ' Set endCell = endCell.End(xlToRight)
     ' lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row
@@ -176,11 +176,11 @@ Sub MacroTest()
     ' Set pc = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:=ws.Range(startCell, Cells(lastRow, lastColumn)))
     
     ' ' ' add pilot table
-    ' Set pt = pc.CreatePivotTable(TableDestination:=ws.Range("Z3"), TableName:="MyPivotTable")
+    ' Set pt = pc.CreatePivotTable(TableDestination:=ws.Range("AC3"), TableName:="MyPivotTable")
 
     ' With pt
-    '     .PivotFields("Staff Name_NotOP").Orientation = xlRowField
-    '     .AddDataField .PivotFields("Chargable"), "Total Sales", xlSum
+    '     .PivotFields("Staff Name Copy").Orientation = xlRowField
+    '     .AddDataField .PivotFields("Non Operate Hours"), "Total Sales", xlSum
     ' End With
 End Sub
 
@@ -197,6 +197,7 @@ Function GetValue(myDictionary As Variant, key As String) As Variant
     ' Return Empty if the key doesn't exist
     GetValue = Empty
 End Function
+
 
 
 
