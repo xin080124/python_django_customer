@@ -67,15 +67,15 @@ Sub CreatePilotTable()
 
     ' Set pc = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:=Worksheets("OpTimeAggregate").Range(startCell, Cells(lastRow, lastColumn)))
 
-    Set pc = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:=Worksheets("OpTimeAggregate").Range("A3:C5"))
+    Set pc = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:=Worksheets("OpTimeAggregate").Range("W3:AA500"))
 
-    ' ' add pilot table
-    ' Set pt = pc.CreatePivotTable(TableDestination:=ws.Range("A1"), TableName:="MyPivotTable")
+    ' add pilot table
+    Set pt = pc.CreatePivotTable(TableDestination:=ws.Range("A1"), TableName:="PivotTable2222")
 
-    ' With pt
-    '     .PivotFields("Staff Name Copy").Orientation = xlRowField
-    '     .AddDataField .PivotFields("Non Operate Hours"), "Total Sales", xlSum
-    ' End With
+    With pt
+        .PivotFields("Staff Name Copy").Orientation = xlRowField
+        .AddDataField .PivotFields("Non Operate Hours"), "Total Sales", xlSum
+    End With
     MsgBox wsName & " Pilot table is created!"
 
 End Sub
