@@ -70,7 +70,7 @@ Sub MacroTest()
     myDictionary(4, 1) = "Operate Hours"
     myDictionary(4, 2) = "Z"
 
-    myDictionary(5, 1) = "Matter Desc"
+    myDictionary(5, 1) = "Matter Desc Copy"
     myDictionary(5, 2) = "AA"
 
     myDictionary(6, 1) = "Chargable"
@@ -93,7 +93,8 @@ Sub MacroTest()
             Debug.Print "MatterFieldValue: " & MatterFieldValue
             Debug.Print "ClientFieldValue: " & ClientFieldValue
             .Cells(i, GetValue(myDictionary, "Staff Name Copy")).Value = .Cells(i, GetValue(myDictionary, "Staff Name"))   ' Copy staff names
-            .Cells(i, "AA").Value = .Cells(i, "F")   ' Copy matter desc detail
+            .Cells(i, GetValue(myDictionary, "Matter Desc Copy")).Value = .Cells(i, GetValue(myDictionary, "Matter Desc"))
+   ' Copy matter desc detail
             If i > title_row Then
             For ti = LBound(searchTexts) To UBound(searchTexts)
                 ' Debug.Print "searchTexts: " & searchTexts(ti)
