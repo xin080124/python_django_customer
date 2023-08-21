@@ -70,7 +70,7 @@ Sub MacroTest()
     myDictionary(4, 1) = "Operate Hours"
     myDictionary(4, 2) = "Z"
 
-    myDictionary(5, 1) = "Matter Desc Copy"
+    myDictionary(5, 1) = "Client & Matter Desc"
     myDictionary(5, 2) = "AA"
 
     myDictionary(6, 1) = "Chargable"
@@ -93,7 +93,7 @@ Sub MacroTest()
             Debug.Print "MatterFieldValue: " & MatterFieldValue
             Debug.Print "ClientFieldValue: " & ClientFieldValue
             .Cells(i, GetValue(myDictionary, "Staff Name Copy")).Value = .Cells(i, GetValue(myDictionary, "Staff Name"))   ' Copy staff names
-            .Cells(i, GetValue(myDictionary, "Matter Desc Copy")).Value = .Cells(i, GetValue(myDictionary, "Matter Desc"))
+            .Cells(i, GetValue(myDictionary, "Client & Matter Desc")).Value = .Cells(i, GetValue(myDictionary, "Client Sort Name")) & .Cells(i, GetValue(myDictionary, "Matter Desc"))
    ' Copy matter desc detail
             If i > title_row Then
             For ti = LBound(searchTexts) To UBound(searchTexts)
@@ -120,6 +120,9 @@ Sub MacroTest()
                 Dim tar_name_parts() As String
                 Dim name_parts() As String
                 
+                
+                core_op_team(mi) = Replace(core_op_team(mi), ", ", ",")
+                core_op_team(mi) = Replace(core_op_team(mi), ",", " ")
                 tar_name_parts() = Split(core_op_team(mi), " ")
                 name_parts() = Split(StaffFieldValue, " ")
                 'Debug.Print "myArray is of type: " & TypeName(tar_name_parts)
@@ -193,5 +196,6 @@ Function GetValue(myDictionary As Variant, key As String) As Variant
     ' Return Empty if the key doesn't exist
     GetValue = Empty
 End Function
+
 
 
