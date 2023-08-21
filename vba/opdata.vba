@@ -40,7 +40,8 @@ Sub MacroTest()
     ' MappingLstr = Mapping.Range("A" & Rows.Count).End(xlUp).Row 'Find the lastrow in the Mapping Sheet
 
     ' searchTexts = Split("AMS,Operate", ",")
-    searchTexts = ExtractColumnValuesToArray("MS Engagements", 3)
+    OPClients = ExtractColumnValuesToArray("MS Engagements", 1)
+    OPMatters = ExtractColumnValuesToArray("MS Engagements", 2)
 
     ' Dim core_op_team As String
     ' core_op_team = Split("Nick McEwen,Thomas Gross,Shyam Kumar,David Ang,Kobe Xu,Siva Anbalagan,Ryan Cruz- PDC,Ma. Jesusa Cruz- PDC", ",")
@@ -88,18 +89,18 @@ Sub MacroTest()
     With SourceData
 
         For i = title_row To SourceDataLstr
-            MatterFieldValue = .Cells(i, "E").Value
-            ClientFieldValue = .Cells(i, "D").Value
+            MatterFieldValue = .Cells(i, GetValue(myDictionary, "Matter Desc")).Value
+            ClientFieldValue = .Cells(i, GetValue(myDictionary, "Client Sort Name")).Value
             Debug.Print "MatterFieldValue: " & MatterFieldValue
             Debug.Print "ClientFieldValue: " & ClientFieldValue
             .Cells(i, GetValue(myDictionary, "Staff Name Copy")).Value = .Cells(i, GetValue(myDictionary, "Staff Name"))   ' Copy staff names
             .Cells(i, GetValue(myDictionary, "Client & Matter Desc")).Value = .Cells(i, GetValue(myDictionary, "Client Sort Name")) & .Cells(i, GetValue(myDictionary, "Matter Desc"))
    ' Copy matter desc detail
             If i > title_row Then
-            For ti = LBound(searchTexts) To UBound(searchTexts)
+            For ti = LBound(OPClients) To UBound(OPClients)
                 ' Debug.Print "searchTexts: " & searchTexts(ti)
                 bFind = False
-                If InStr(searchTexts(ti), MatterFieldValue) > 0 And InStr(searchTexts(ti), ClientFieldValue) > 0 Then
+                If InStr(OPMatters(ti), MatterFieldValue) > 0 And InStr(OPClients(ti), ClientFieldValue) > 0 Then
                     .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set operate hours
                     bFind = True
                     Exit For
@@ -146,7 +147,7 @@ Sub MacroTest()
                 .Cells(i, GetValue(myDictionary, "Core Team")).Value = "Core Team"
                 .Cells(i, GetValue(myDictionary, "Non Operate Hours")).Value = "Non Operate Hours"
                 .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = "Operate Hours"
-                .Cells(i, GetValue(myDictionary, "Matter Desc")).Value = "Matter Desc"
+                .Cells(i, GetValue(myDictionary, "Client & Matter Desc")).Value = "Client & Matter Desc"
                 ' .Cells(i, "W").Value = "Staff Name"
                 ' .Cells(i, "X").Value = "Core Team"
                 ' .Cells(i, "Y").Value = "Non Operate Hours"
