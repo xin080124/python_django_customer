@@ -1,24 +1,4 @@
 
-' Sub TestArrayEqualityUnordered()
-'     Dim arr1() As String
-'     Dim arr2() As String
-'     Dim result As Boolean
-    
-'     ' Initialize arrays
-'     arr1 = Split("A,B,C,D,E,F", ",")
-'     arr2 = Split("F,E,D,C,B,A", ",")
-    
-'     ' Check if arrays have the same elements (unordered)
-'     result = AreArraysEqualUnordered(arr1, arr2)
-    
-'     ' Display result
-'     If result Then
-'         MsgBox "The two arrays have the same elements (unordered)."
-'     Else
-'         MsgBox "The two arrays do not have the same elements (unordered)."
-'     End If
-' End Sub
-
 Sub MacroTest()
 '
 ' MacroTest Macro
@@ -52,8 +32,8 @@ Sub MacroTest()
     ' write_row = ws.UsedRange.Rows.Count + 1
     write_row = title_row
 
-    sheet_row = Worksheets(3).UsedRange.Rows.Count
-    Worksheets(3).Rows(title_row & ":" & sheet_row - end_row).Copy ws.Range("A" & write_row)
+    sheet_row = Worksheets("Latest data from BPR").UsedRange.Rows.Count
+    Worksheets("Latest data from BPR").Rows(title_row & ":" & sheet_row - end_row).Copy ws.Range("A" & write_row)
     
     Dim SourceData As Worksheet: Set SourceData = Worksheets(1)
 
@@ -61,10 +41,12 @@ Sub MacroTest()
     ' MappingLstr = Mapping.Range("A" & Rows.Count).End(xlUp).Row 'Find the lastrow in the Mapping Sheet
 
     ' searchTexts = Split("AMS,Operate", ",")
-    searchTexts = ExtractColumnValuesToArray("managed_services", 3)
+    searchTexts = ExtractColumnValuesToArray("MS Engagements", 3)
 
     ' Dim core_op_team As String
-    core_op_team = Split("Nick McEwen,Thomas Gross,Shyam Kumar,David Ang,Kobe Xu,Siva Anbalagan,Ryan Cruz- PDC,Ma. Jesusa Cruz- PDC", ",")
+    ' core_op_team = Split("Nick McEwen,Thomas Gross,Shyam Kumar,David Ang,Kobe Xu,Siva Anbalagan,Ryan Cruz- PDC,Ma. Jesusa Cruz- PDC", ",")
+    core_op_team = ExtractColumnValuesToArray("Core Operate Team", 1)
+    
     With SourceData
 
         For i = title_row To SourceDataLstr
