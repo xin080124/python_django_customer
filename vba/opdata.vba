@@ -139,11 +139,11 @@ Sub MacroTest()
             Next mi
 
             Else
-                .Cells(i, GetValue(myDictionary, "Staff Name Copy")).Value = "Staff Name ccccc"
-                '.Cells(i, GetValue("Core Team")).Value = "Core Team"
-                '.Cells(i, GetValue("Non Operate Hours")).Value = "Non Operate Hours"
-                '.Cells(i, GetValue("Operate Hours")).Value = "Operate Hours"
-                '.Cells(i, GetValue("Matter Desc")).Value = "Matter Desc"
+                .Cells(i, GetValue(myDictionary, "Staff Name Copy")).Value = "Staff Name Copy"
+                .Cells(i, GetValue(myDictionary, "Core Team")).Value = "Core Team"
+                .Cells(i, GetValue(myDictionary, "Non Operate Hours")).Value = "Non Operate Hours"
+                .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = "Operate Hours"
+                .Cells(i, GetValue(myDictionary, "Matter Desc")).Value = "Matter Desc"
                 ' .Cells(i, "W").Value = "Staff Name"
                 ' .Cells(i, "X").Value = "Core Team"
                 ' .Cells(i, "Y").Value = "Non Operate Hours"
