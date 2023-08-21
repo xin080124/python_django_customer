@@ -28,7 +28,6 @@ Sub MacroTest()
     Set wb = Application.ActiveWorkbook
     Set ws = wb.Worksheets.Add(before:=Sheets(1)) 'Create a new sheet
     ws.Name = wsName
-    MsgBox wsName & " table is created!"
     ' write_row = ws.UsedRange.Rows.Count + 1
     write_row = title_row
 
@@ -93,11 +92,11 @@ Sub MacroTest()
             ClientFieldValue = .Cells(i, "D").Value
             Debug.Print "MatterFieldValue: " & MatterFieldValue
             Debug.Print "ClientFieldValue: " & ClientFieldValue
-            .Cells(i, "W").Value = .Cells(i, "C")   ' Copy staff names
+            .Cells(i, GetValue(myDictionary, "Staff Name Copy")).Value = .Cells(i, GetValue(myDictionary, "Staff Name"))   ' Copy staff names
             .Cells(i, "AA").Value = .Cells(i, "F")   ' Copy matter desc detail
             If i > title_row Then
             For ti = LBound(searchTexts) To UBound(searchTexts)
-                Debug.Print "searchTexts: " & searchTexts(ti)
+                ' Debug.Print "searchTexts: " & searchTexts(ti)
                 bFind = False
                 If InStr(searchTexts(ti), MatterFieldValue) > 0 And InStr(searchTexts(ti), ClientFieldValue) > 0 Then
                     .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set operate hours
@@ -111,7 +110,7 @@ Sub MacroTest()
             End If
             
             Dim StaffFieldValue As String
-            StaffFieldValue = .Cells(i, "C").Value
+            StaffFieldValue = .Cells(i, GetValue(myDictionary, "Staff Name")).Value
           
             StaffFieldValue = Replace(StaffFieldValue, ", ", ",")
             StaffFieldValue = Replace(StaffFieldValue, ",", " ")
@@ -131,10 +130,10 @@ Sub MacroTest()
                 result = AreArraysEqualUnordered1(name_parts, tar_name_parts)
                 ' If InStr(StaffFieldValue, core_op_team(mi)) > 0 Then
                 If result = True Then
-                    .Cells(i, "X").Value = "Y"    ' from core team
+                    .Cells(i, GetValue(myDictionary, "Core Team")).Value = "Y"    ' from core team
                     Exit For
                 Else
-                    .Cells(i, "X").Value = "N"    ' not from core team
+                    .Cells(i, GetValue(myDictionary, "Core Team")).Value = "N"    ' not from core team
                 End If
             Next mi
 
@@ -154,6 +153,7 @@ Sub MacroTest()
         Next i
 
     End With
+    MsgBox wsName & " table is created!"
     ' ' add buffer
     ' Set startCell = ws.Range("A3")
     ' Set endCell = startCell.End(xlDown)
@@ -192,4 +192,5 @@ Function GetValue(myDictionary As Variant, key As String) As Variant
     ' Return Empty if the key doesn't exist
     GetValue = Empty
 End Function
+
 
