@@ -98,9 +98,12 @@ Sub MacroTest()
    ' Copy matter desc detail
             If i > title_row Then
             For ti = LBound(OPClients) To UBound(OPClients)
-                ' Debug.Print "searchTexts: " & searchTexts(ti)
+                Debug.Print "LCase(OPClients(ti)): " & LCase(OPClients(ti))
+                Debug.Print "LCase(ClientFieldValue): " & LCase(ClientFieldValue)
                 bFind = False
-                If InStr(OPMatters(ti), MatterFieldValue) > 0 And InStr(OPClients(ti), ClientFieldValue) > 0 Then
+                Debug.Print "InStr(LCase(MatterFieldValue), LCase(OPMatters(ti))) : " & InStr(LCase(MatterFieldValue), LCase(OPMatters(ti)))
+                Debug.Print "InStr(LCase(OPClients(ti)), LCase(ClientFieldValue)) : " & InStr(LCase(OPClients(ti)), LCase(ClientFieldValue))
+                If Len(ClientFieldValue) > 0 And Len(OPMatters(ti)) > 0 And Len(OPClients(ti)) > 0 And InStr(LCase(MatterFieldValue), LCase(OPMatters(ti))) > 0 And InStr(LCase(ClientFieldValue), LCase(OPClients(ti))) > 0 Then
                     .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set operate hours
                     bFind = True
                     Exit For
@@ -197,6 +200,7 @@ Function GetValue(myDictionary As Variant, key As String) As Variant
     ' Return Empty if the key doesn't exist
     GetValue = Empty
 End Function
+
 
 
 
