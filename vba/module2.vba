@@ -80,3 +80,17 @@ Function ExtractColumnValuesToArray(ByVal sheetName As String, ByVal targetCol A
     ExtractColumnValuesToArray = colValues
 End Function
 
+
+
+' Check if a key exists
+Function KeyExists(key As String) As Boolean
+    Dim i As Integer
+    For i = LBound(myDictionary, 1) To UBound(myDictionary, 1)
+        If myDictionary(i, 1) = key Then
+            KeyExists = True
+            Exit Function
+        End If
+    Next i
+    KeyExists = False
+End Function
+

@@ -46,6 +46,45 @@ Sub MacroTest()
     ' Dim core_op_team As String
     ' core_op_team = Split("Nick McEwen,Thomas Gross,Shyam Kumar,David Ang,Kobe Xu,Siva Anbalagan,Ryan Cruz- PDC,Ma. Jesusa Cruz- PDC", ",")
     core_op_team = ExtractColumnValuesToArray("Core Operate Team", 1)
+
+    ' Dim myDictionary() As Variant
+
+    Dim myDictionary(1 To 9, 1 To 2) As Variant
+
+    ' ReDim myDictionary(dictLowerBound To dictUpperBound, 1 To 2)
+    
+    ' Add key-value pairs
+    ' .Cells(i, "W").Value = "Staff Name"
+    ' .Cells(i, "X").Value = "Core Team"
+    ' .Cells(i, "Y").Value = "Non Operate Hours"
+    ' .Cells(i, "Z").Value = "Operate Hours"
+    ' .Cells(i, "AA").Value = "Matter Desc"
+    myDictionary(1, 1) = "Staff Name Copy"
+    myDictionary(1, 2) = "W"
+    
+    myDictionary(2, 1) = "Core Team"
+    myDictionary(2, 2) = "X"
+    
+    myDictionary(3, 1) = "Non Operate Hours"
+    myDictionary(3, 2) = "Y"
+
+    myDictionary(4, 1) = "Operate Hours"
+    myDictionary(4, 2) = "Z"
+
+    myDictionary(5, 1) = "Matter Desc"
+    myDictionary(5, 2) = "AA"
+
+    myDictionary(6, 1) = "Chargable"
+    myDictionary(6, 2) = "F"
+
+    myDictionary(7, 1) = "Matter Desc"
+    myDictionary(7, 2) = "E"
+
+    myDictionary(8, 1) = "Client Sort Name"
+    myDictionary(8, 2) = "D"
+
+    myDictionary(9, 1) = "Staff Name"
+    myDictionary(9, 2) = "C"
     
     With SourceData
 
@@ -100,12 +139,16 @@ Sub MacroTest()
             Next mi
 
             Else
-                .Cells(i, "W").Value = "Staff Name"
-                ' .Cells(i, "X").Value = "Non Operate Hours"
-                .Cells(i, "X").Value = "Core Team"
-                .Cells(i, "Y").Value = "Non Operate Hours"
-                .Cells(i, "Z").Value = "Operate Hours"
-                .Cells(i, "AA").Value = "Matter Desc"
+                .Cells(i, GetValue(myDictionary, "Staff Name Copy")).Value = "Staff Name ccccc"
+                '.Cells(i, GetValue("Core Team")).Value = "Core Team"
+                '.Cells(i, GetValue("Non Operate Hours")).Value = "Non Operate Hours"
+                '.Cells(i, GetValue("Operate Hours")).Value = "Operate Hours"
+                '.Cells(i, GetValue("Matter Desc")).Value = "Matter Desc"
+                ' .Cells(i, "W").Value = "Staff Name"
+                ' .Cells(i, "X").Value = "Core Team"
+                ' .Cells(i, "Y").Value = "Non Operate Hours"
+                ' .Cells(i, "Z").Value = "Operate Hours"
+                ' .Cells(i, "AA").Value = "Matter Desc"
             End If
 
         Next i
@@ -135,3 +178,18 @@ Sub MacroTest()
     '     .AddDataField .PivotFields("Chargable"), "Total Sales", xlSum
     ' End With
 End Sub
+
+' Retrieve a value
+Function GetValue(myDictionary As Variant, key As String) As Variant
+    Dim i As Integer
+    ' For i = LBound(myDictionary, 1) To UBound(myDictionary, 1)
+    For i = 1 To 9
+        If myDictionary(i, 1) = key Then
+            GetValue = myDictionary(i, 2)
+            Exit Function
+        End If
+    Next i
+    ' Return Empty if the key doesn't exist
+    GetValue = Empty
+End Function
+
