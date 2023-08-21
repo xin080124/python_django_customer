@@ -56,8 +56,7 @@ Sub CreatePilotTable()
     ' ActiveSheet.Shapes("Chart 1").IncrementLeft -290.4192125984
     ' ActiveSheet.Shapes("Chart 1").IncrementTop -53.2934645669
 
-    Set pc = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:=ws.Range("A3:C5"))
-    
+
     ' Set startCell = Worksheets("OpTimeAggregate").Range("A3")
     ' Set endCell = startCell.End(xlDown)
     ' Set endCell = endCell.End(xlToRight)
@@ -67,6 +66,8 @@ Sub CreatePilotTable()
     ' Set pc = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:=ws.Range(startCell, Cells(lastRow, lastColumn)))
 
     ' Set pc = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:=Worksheets("OpTimeAggregate").Range(startCell, Cells(lastRow, lastColumn)))
+
+    Set pc = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:=Worksheets("OpTimeAggregate").Range("A3:C5"))
 
     ' ' add pilot table
     ' Set pt = pc.CreatePivotTable(TableDestination:=ws.Range("A1"), TableName:="MyPivotTable")
