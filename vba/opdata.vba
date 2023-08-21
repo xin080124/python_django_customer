@@ -100,14 +100,14 @@ Sub MacroTest()
                 Debug.Print "searchTexts: " & searchTexts(ti)
                 bFind = False
                 If InStr(searchTexts(ti), MatterFieldValue) > 0 And InStr(searchTexts(ti), ClientFieldValue) > 0 Then
-                    .Cells(i, "Z").Value = .Cells(i, "G")   ' Set operate hours
+                    .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set operate hours
                     bFind = True
                     Exit For
                 End If
             Next ti
             
             If bFind = False Then
-                 .Cells(i, "Y").Value = .Cells(i, "G")   ' Set non operate hours
+                 .Cells(i, GetValue(myDictionary, "Non Operate Hours")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set non operate hours
             End If
             
             Dim StaffFieldValue As String
