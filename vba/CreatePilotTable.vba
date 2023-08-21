@@ -57,11 +57,11 @@ Sub CreatePilotTable()
     ' ActiveSheet.Shapes("Chart 1").IncrementTop -53.2934645669
 
 
-    ' Set startCell = Worksheets("OpTimeAggregate").Range("A3")
-    ' Set endCell = startCell.End(xlDown)
-    ' Set endCell = endCell.End(xlToRight)
-    ' lastRow = Worksheets("OpTimeAggregate").Cells(Worksheets("OpTimeAggregate").Rows.Count, 1).End(xlUp).Row
-    ' lastColumn = Worksheets("OpTimeAggregate").Cells(3, Worksheets("OpTimeAggregate").Columns.Count).End(xlToLeft).Column
+    Set startCell = Worksheets("OpTimeAggregate").Range("A3")
+    Set endCell = startCell.End(xlDown)
+    Set endCell = endCell.End(xlToRight)
+    lastRow = Worksheets("OpTimeAggregate").Cells(Worksheets("OpTimeAggregate").Rows.Count, 1).End(xlUp).Row
+    lastColumn = Worksheets("OpTimeAggregate").Cells(3, Worksheets("OpTimeAggregate").Columns.Count).End(xlToLeft).Column
 
     ' Set pc = ThisWorkbook.PivotCaches.Create(SourceType:=xlDatabase, SourceData:=ws.Range(startCell, Cells(lastRow, lastColumn)))
 
