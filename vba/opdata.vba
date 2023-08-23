@@ -146,9 +146,6 @@ Sub MacroTest()
                 'Debug.Print "myArray is of type: " & TypeName(tar_name_parts)
                 'Debug.Print "myArray is of type: " & VarType(tar_name_parts)
                 
-                ' Check if arrays are equal (unordered)
-                ' result = True
-
                 result = AreArraysEqualUnordered1(name_parts, tar_name_parts)
                 ' If InStr(StaffFieldValue, core_op_team(mi)) > 0 Then
                 If result = True Then
