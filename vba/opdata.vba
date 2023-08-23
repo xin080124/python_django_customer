@@ -49,7 +49,7 @@ Sub MacroTest()
 
     ' Dim myDictionary() As Variant
 
-    Dim myDictionary(1 To 9, 1 To 2) As Variant
+    Dim myDictionary(1 To 10, 1 To 2) As Variant
 
     ' ReDim myDictionary(dictLowerBound To dictUpperBound, 1 To 2)
     
@@ -65,14 +65,17 @@ Sub MacroTest()
     myDictionary(2, 1) = "Core Team"
     myDictionary(2, 2) = "X"
     
-    myDictionary(3, 1) = "Non Operate Hours"
+    myDictionary(3, 1) = "Other Engagements"
     myDictionary(3, 2) = "Y"
 
+    myDictionary(10, 1) = "Leave Hours"
+    myDictionary(10, 2) = "Z"
+
     myDictionary(4, 1) = "Operate Hours"
-    myDictionary(4, 2) = "Z"
+    myDictionary(4, 2) = "AA"
 
     myDictionary(5, 1) = "Client & Matter Desc"
-    myDictionary(5, 2) = "AA"
+    myDictionary(5, 2) = "AB"
 
     myDictionary(6, 1) = "Chargable"
     myDictionary(6, 2) = "F"
@@ -111,7 +114,7 @@ Sub MacroTest()
             Next ti
             
             If bFind = False Then
-                 .Cells(i, GetValue(myDictionary, "Non Operate Hours")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set non operate hours
+                 .Cells(i, GetValue(myDictionary, "Other Engagements")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set non operate hours
             End If
             
             Dim StaffFieldValue As String
@@ -148,7 +151,8 @@ Sub MacroTest()
             Else
                 .Cells(i, GetValue(myDictionary, "Staff Name Copy")).Value = "Staff Name Copy"
                 .Cells(i, GetValue(myDictionary, "Core Team")).Value = "Core Team"
-                .Cells(i, GetValue(myDictionary, "Non Operate Hours")).Value = "Non Operate Hours"
+                .Cells(i, GetValue(myDictionary, "Other Engagements")).Value = "Other Engagements"
+                .Cells(i, GetValue(myDictionary, "Leave Hours")).Value = "Leave Hours"
                 .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = "Operate Hours"
                 .Cells(i, GetValue(myDictionary, "Client & Matter Desc")).Value = "Client & Matter Desc"
                 ' .Cells(i, "W").Value = "Staff Name"
@@ -156,6 +160,8 @@ Sub MacroTest()
                 ' .Cells(i, "Y").Value = "Non Operate Hours"
                 ' .Cells(i, "Z").Value = "Operate Hours"
                 ' .Cells(i, "AA").Value = "Matter Desc"
+                ' myDictionary(10, 1) = "Leave Hours"
+                ' myDictionary(10, 2) = "Z"
             End If
 
         Next i
@@ -191,7 +197,7 @@ End Sub
 Function GetValue(myDictionary As Variant, key As String) As Variant
     Dim i As Integer
     ' For i = LBound(myDictionary, 1) To UBound(myDictionary, 1)
-    For i = 1 To 9
+    For i = 1 To 10
         If myDictionary(i, 1) = key Then
             GetValue = myDictionary(i, 2)
             Exit Function
