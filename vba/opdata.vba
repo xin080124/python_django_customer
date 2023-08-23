@@ -45,7 +45,6 @@ Sub MacroTest()
     Leaves = ExtractColumnValuesToArray("MS Engagements", 4)
 
     ' Dim core_op_team As String
-    ' core_op_team = Split("Nick McEwen,Thomas Gross,Shyam Kumar,David Ang,Kobe Xu,Siva Anbalagan,Ryan Cruz- PDC,Ma. Jesusa Cruz- PDC", ",")
     core_op_team = ExtractColumnValuesToArray("Core Operate Team", 1)
 
     ' Dim myDictionary() As Variant
@@ -168,12 +167,6 @@ Sub MacroTest()
                 .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = "Operate Hours"
                 .Cells(i, GetValue(myDictionary, "Client & Matter Desc")).Value = "Client & Matter Desc"
                 ' .Cells(i, "W").Value = "Staff Name"
-                ' .Cells(i, "X").Value = "Core Team"
-                ' .Cells(i, "Y").Value = "Non Operate Hours"
-                ' .Cells(i, "Z").Value = "Operate Hours"
-                ' .Cells(i, "AA").Value = "Matter Desc"
-                ' myDictionary(10, 1) = "Leave Hours"
-                ' myDictionary(10, 2) = "Z"
             End If
 
         Next i
