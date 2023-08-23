@@ -42,6 +42,7 @@ Sub MacroTest()
     ' searchTexts = Split("AMS,Operate", ",")
     OPClients = ExtractColumnValuesToArray("MS Engagements", 1)
     OPMatters = ExtractColumnValuesToArray("MS Engagements", 2)
+    Leaves = ExtractColumnValuesToArray("MS Engagements", 4)
 
     ' Dim core_op_team As String
     ' core_op_team = Split("Nick McEwen,Thomas Gross,Shyam Kumar,David Ang,Kobe Xu,Siva Anbalagan,Ryan Cruz- PDC,Ma. Jesusa Cruz- PDC", ",")
@@ -49,7 +50,7 @@ Sub MacroTest()
 
     ' Dim myDictionary() As Variant
 
-    Dim myDictionary(1 To 10, 1 To 2) As Variant
+    Dim myDictionary(1 To 11, 1 To 2) As Variant
 
     ' ReDim myDictionary(dictLowerBound To dictUpperBound, 1 To 2)
     
@@ -88,6 +89,9 @@ Sub MacroTest()
 
     myDictionary(9, 1) = "Staff Name"
     myDictionary(9, 2) = "C"
+
+    myDictionary(11, 1) = "Total Hours"
+    myDictionary(11, 2) = "O"
     
     With SourceData
 
@@ -110,11 +114,19 @@ Sub MacroTest()
                     .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set operate hours
                     bFind = True
                     Exit For
+                Else 
+                    For li = LBound(Leaves) To UBound(Leaves)
+                        If InStr(LCase(MatterFieldValue), LCase(Leaves(li))) > 0 Then
+                            .Cells(i, GetValue(myDictionary, "Leave Hours")).Value = .Cells(i, GetValue(myDictionary, "Total Hours"))   ' Set leave hours
+                            bFind = True
+                            Exit For
+                        End If
+                    Next li
                 End If
             Next ti
             
             If bFind = False Then
-                 .Cells(i, GetValue(myDictionary, "Other Engagements")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set non operate hours
+                 .Cells(i, GetValue(myDictionary, "Other Engagements")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set other engagements hours
             End If
             
             Dim StaffFieldValue As String
@@ -197,7 +209,7 @@ End Sub
 Function GetValue(myDictionary As Variant, key As String) As Variant
     Dim i As Integer
     ' For i = LBound(myDictionary, 1) To UBound(myDictionary, 1)
-    For i = 1 To 10
+    For i = 1 To 11
         If myDictionary(i, 1) = key Then
             GetValue = myDictionary(i, 2)
             Exit Function
