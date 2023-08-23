@@ -37,8 +37,7 @@ Sub MacroTest()
     Dim SourceData As Worksheet: Set SourceData = Worksheets(1)
 
     SourceDataLstr = SourceData.Range("A" & Rows.Count).End(xlUp).Row 'Find the lastrow in the Source Data Sheet
-    ' MappingLstr = Mapping.Range("A" & Rows.Count).End(xlUp).Row 'Find the lastrow in the Mapping Sheet
-
+    
     ' searchTexts = Split("AMS,Operate", ",")
     OPClients = ExtractColumnValuesToArray("MS Engagements", 1)
     OPMatters = ExtractColumnValuesToArray("MS Engagements", 2)
