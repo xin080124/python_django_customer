@@ -108,7 +108,9 @@ Sub MacroTest()
                 bFind = False
                 Debug.Print "InStr(LCase(MatterFieldValue), LCase(OPMatters(ti))) : " & InStr(LCase(MatterFieldValue), LCase(OPMatters(ti)))
                 Debug.Print "InStr(LCase(OPClients(ti)), LCase(ClientFieldValue)) : " & InStr(LCase(OPClients(ti)), LCase(ClientFieldValue))
-                If Len(ClientFieldValue) > 0 And Len(OPMatters(ti)) > 0 And Len(OPClients(ti)) > 0 And InStr(LCase(MatterFieldValue), LCase(OPMatters(ti))) > 0 And InStr(LCase(ClientFieldValue), LCase(OPClients(ti))) > 0 Then
+                ' If Len(ClientFieldValue) > 0 And Len(OPMatters(ti)) > 0 And Len(OPClients(ti)) > 0 And InStr(LCase(MatterFieldValue), LCase(OPMatters(ti))) > 0 And InStr(LCase(ClientFieldValue), LCase(OPClients(ti))) > 0 Then
+                '     .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set operate hours
+                If Len(ClientFieldValue) > 0 And Len(OPMatters(ti)) > 0 And Len(OPClients(ti)) > 0 And MatterFieldValue = OPMatters(ti) And ClientFieldValue = OPClients(ti) Then
                     .Cells(i, GetValue(myDictionary, "Operate Hours")).Value = .Cells(i, GetValue(myDictionary, "Chargable"))   ' Set operate hours
                     bFind = True
                     Exit For
