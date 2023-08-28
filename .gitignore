@@ -1,0 +1,13 @@
+build/
+**/.DS_Store
+.gradle
+.project
+.settings
+.classpath
+bin/
+_legacy
+.idea/
+gradle/
+gradlew*
+.vscode
+.utils/retain_tables/
