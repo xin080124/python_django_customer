@@ -10,4 +10,5 @@ _legacy
 gradle/
 gradlew*
 .vscode
-.utils/retain_tables/
+utils/retain_tables/
+vendor
