@@ -1,0 +1,11 @@
+{
+  "name": "python_django_customer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:xin080124/python_django_customer.git",
+  "author": "nancy2023 <hxy820718@163.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "standard-version": "^9.5.0"
+  }
+}

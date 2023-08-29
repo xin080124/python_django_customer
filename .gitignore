@@ -13,3 +13,4 @@ gradlew*
 utils/retain_tables/
 vendor
 __pycache__
+node_modules
