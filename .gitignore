@@ -12,3 +12,4 @@ gradlew*
 .vscode
 utils/retain_tables/
 vendor
+__pycache__
